@@ -11,13 +11,14 @@
             }
         });
 
-    EmployeesController.$inject = ['employeesService', '$uibModal'];
-    function EmployeesController(employeesService, $uibModal) {
+    EmployeesController.$inject = ['employeesService', '$uibModal', 'swangular'];
+    function EmployeesController(employeesService, $uibModal, swangular) {
         var ctrl = this;
         var create = 'create';
         var edit = 'edit';
         var maxLength = 10;
 
+        ctrl.currentPage = 1;
         ctrl.employeesService = employeesService;
 
         ctrl.addEmployee = addEmployee;
@@ -65,21 +66,30 @@
         }
 
         function removeEmployee(employee, index) {
-            ctrl.progressRemove = true;
-            employeesService.remove(employee).then(function onSuccess() {
-                ctrl.progressRemove = false;
-                employeesService.count--;
-                ctrl.employees.splice(index, 1);
-                if (!ctrl.employees.length) {
-                    changePage(ctrl.currentPage--);
+            swangular.confirm("Are you sure want to remove user?", { showCancelButton: true}).then(function (response) {
+                if (response.value) {
+                    ctrl.progressRemove = true;
+                    ctrl.selectedIndex = index;
+                    employeesService.remove(employee).then(function onSuccess() {
+                        swangular.success('You successfully removed employee!');
+                        ctrl.progressRemove = false;
+                        employeesService.count--;
+                        ctrl.employees.splice(index, 1);
+                        if (!ctrl.employees.length) {
+                            changePage(ctrl.currentPage--);
+                        }
+                    }, function onError() {
+                        ctrl.progressRemove = false;
+                    });
                 }
-            }, function onError() {
-                ctrl.progressRemove = false;
             });
         }
 
         function changePage() {
+            ctrl.employees = [];
+            ctrl.progress = true;
             employeesService.get((ctrl.currentPage - 1) * 10).then(function (response) {
+                ctrl.progress = false;
                 ctrl.employees = response;
             });
         }

@@ -1,4 +1,15 @@
-﻿<a ui-sref="employees">Back to main screen</a>
-<highchart config="$ctrl.chartConfig"></highchart>
-
-<button ng-click="$ctrl.changeType()">Change Chart Type</button>
+﻿
+<div class="container">
+    <div class="row">
+        <br />
+        <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+            <a class="btn btn-link" ui-sref="employees">
+            <span class="arrow"></span>
+            Back <span class="mobile-hidden">to main screen</span></a>
+            <button class="btn btn-primary pull-right" ng-click="$ctrl.changeType()">Change Chart Type</button>
+            <br />
+            <br />
+            <highchart class="center-block" config="$ctrl.chartConfig"></highchart>
+        </div>
+    </div>
+</div>

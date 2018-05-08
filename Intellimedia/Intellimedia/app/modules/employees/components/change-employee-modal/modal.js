@@ -12,8 +12,8 @@
             }
         });
 
-    ModalController.$inject = ['employeesService'];
-    function ModalController(employeesService) {
+    ModalController.$inject = ['employeesService', 'swangular'];
+    function ModalController(employeesService, swangular) {
         var ctrl = this;
         var edit = 'edit';
         var create = 'create';
@@ -23,7 +23,7 @@
         ctrl.genders = ['Male', 'Female'];
 
         function $onInit() {
-            ctrl.employee = ctrl.resolve.type === edit ? angular.copy(ctrl.resolve.employee) : {};
+            ctrl.employee = ctrl.resolve.type === edit ? angular.copy(ctrl.resolve.employee) : { gender: ctrl.genders[0] };
         }
 
         function submit() {
@@ -37,13 +37,19 @@
             }
         }
         var onSuccess = function (response) {
+            swangular.success('You successfully saved changes!');
             ctrl.progress = false;
             ctrl.close({ $value: response.data });
         };
 
         var onError = function () {
             ctrl.progress = false;
-            alert('worl');
+            swangular.swal({
+                title: 'Error',
+                text: "Something went wrong!",
+                type: 'error',
+                confirmButtonText: 'OK'
+            });
         };
 
     }

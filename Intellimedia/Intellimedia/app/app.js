@@ -4,6 +4,7 @@ angular
         'ui.router',
         'ui.bootstrap',
         'highcharts-ng',
+        'swangular',
         'i.employees'])
     .config(config);
 

@@ -1,33 +1,51 @@
-﻿<button ng-click="$ctrl.addEmployee()">Add new</button>
+﻿<div class="container">
+    <div class="row">
 
-<ul uib-pagination direction-links="false" boundary-links="true" total-items="$ctrl.employeesService.count"
-    ng-model="$ctrl.currentPage" ng-change="$ctrl.changePage()"></ul>
-<table>
-    <thead>
-        <tr>
-            <td>Id</td>
-            <td>Name</td>
-            <td>Gender</td>
-            <td>Contact information</td>
-            <td>Date of Adding</td>
-            <td>Time of beginning working day</td>
-            <td>Time of ending working day</td>
-            <td></td>
-            <td></td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="employee in $ctrl.employees">
-            <td>{{employee.id}}</td>
-            <td>{{employee.name}}</td>
-            <td>{{employee.gender}}</td>
-            <td>{{employee.contactInformation}}</td>
-            <td>{{employee.dateOfAdding | date:'yyyy-MM-dd'}}</td>
-            <td>{{employee.timeOfBeginning}}</td>
-            <td>{{employee.timeOfEnding}}</td>
-            <td><button ng-click="$ctrl.editEmployee(employee, $index)">Edit</button></td>
-            <td><button ng-disabled="$ctrl.progressRemove" ng-click="$ctrl.removeEmployee(employee, $index)">Remove</button></td>
-        </tr>
-    </tbody>
-</table>
-<button ui-sref="chart">Look at charts</button>
+        <div class="col-xs-12">
+            <ul uib-pagination direction-links="false" boundary-links="true" total-items="$ctrl.employeesService.count"
+                ng-model="$ctrl.currentPage" ng-change="$ctrl.changePage()"></ul>
+            <div class="pull-right header-buttons">
+                <a class="btn btn-primary" ui-sref="chart">Look at charts</a>
+                <button class="btn btn-success" ng-click="$ctrl.addEmployee()">Add new</button>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-xs-12">
+            <div class="table-responsive">
+                <span ng-show="!$ctrl.employess.length && $ctrl.progress" class="loader big-loader"></span>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <td>Id</td>
+                            <td>Name</td>
+                            <td>Gender</td>
+                            <td>Contact information</td>
+                            <td>Date of Adding</td>
+                            <td>Time of beginning working day</td>
+                            <td>Time of ending working day</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="employee in $ctrl.employees">
+                            <td>{{($index + 1) + ($ctrl.currentPage - 1) * 10}}</td>
+                            <td>{{employee.name}}</td>
+                            <td>{{employee.gender}}</td>
+                            <td>{{employee.contactInformation}}</td>
+                            <td>{{employee.dateOfAdding | date:'yyyy-MM-dd'}}</td>
+                            <td>{{employee.timeOfBeginning}}</td>
+                            <td>{{employee.timeOfEnding}}</td>
+                            <td><button class="btn btn-primary" ng-click="$ctrl.editEmployee(employee, $index)">Edit</button></td>
+                            <td><button class="btn btn-default" ng-disabled="$ctrl.progressRemove && $ctrl.selectedIndex===$index"
+                                    ng-click="$ctrl.removeEmployee(employee, $index)">
+                                    <span ng-show="$ctrl.progressRemove && $ctrl.selectedIndex===$index" class="loader"></span>Remove
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+</div>

@@ -19,7 +19,6 @@
         ctrl.changeType = changeType;
 
         function $onInit() {
-            debugger
             ctrl.chartConfig = {
                 chart: {
                     type: 'line'

@@ -48,6 +48,7 @@ namespace Intellimedia.Controllers.ApiControllers.V1
             _employeeRepository.Add(newEmployee, context);
             employee.Id = newEmployee.Id;
             employee.TimeId = newTime.Id;
+            employee.DateOfAdding = newEmployee.DateOfAdding;
             return Ok(employee);
         }
 

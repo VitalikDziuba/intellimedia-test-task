@@ -9,19 +9,16 @@ namespace Intellimedia
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css",
-                      "~/Content/Sass/preloader.css",
-                      "~/Content/icon-fonts.css",
-                      "~/Content/Sass/standart-style.css",
-                      "~/Content/Sass/style.css",
-                      "~/Content/Sass/media-style.css"
+                      "~/Content/bootstrap.min.css",
+                      "~/Content/site.css"
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/angular-components").Include(
                        "~/Scripts/angular.min.js",
                        "~/Scripts/angular-ui-router.min.js",
                        "~/Scripts/ui-bootstrap-tpls-2.5.0.min.js",
+                       "~/Scripts/sweetalert2.all.min.js",
+                       "~/Scripts/swangular.js",
                        "~/Scripts/highstock.src.js",
                        "~/Scripts/highcharts-ng.js"));
 
@@ -33,7 +30,7 @@ namespace Intellimedia
                       "~/app/modules/employees/components/chart/chart.js",
                       "~/app/services/employees.js"
                       ));
-            BundleTable.EnableOptimizations = false;
+            BundleTable.EnableOptimizations = true;
         }
     }
 }
