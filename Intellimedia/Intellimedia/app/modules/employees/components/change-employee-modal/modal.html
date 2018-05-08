@@ -1,0 +1,30 @@
+
+<form name="$ctrl.employeeForm" novalidate ng-submit="$ctrl.submit()">
+    <input ng-model="$ctrl.employee.name" ng-required="true" ng-minlength="2" ng-maxlength="30" name="name" />
+    <span ng-show="$ctrl.employeeForm.$submitted">
+        <span ng-show="$ctrl.employeeForm.name.$error.required">Name is required.</span>
+        <span ng-show="$ctrl.employeeForm.name.$error.minlength">Minimun length of name is 2.</span>
+        <span ng-show="$ctrl.employeeForm.name.$error.maxlength">Maximim length of name is 30.</span>
+    </span>
+    <input ng-model="$ctrl.employee.contactInformation" ng-required="true" ng-maxlength="30" name="contact" />
+    <span ng-show="$ctrl.employeeForm.$submitted">
+        <span ng-show="$ctrl.employeeForm.contact.$error.required">Contact information is required.</span>
+        <span ng-show="$ctrl.employeeForm.contact.$error.maxlength">Maximim length of contact information is 30.</span>
+    </span>
+    <input ng-model="$ctrl.employee.timeOfBeginning" ng-required="true" type="number" min="0" max="24" name="begin" />
+    <span ng-show="$ctrl.employeeForm.$submitted">
+        <span ng-show="$ctrl.employeeForm.begin.$error.required">Time of beginning working day is required.</span>
+        <span ng-show="$ctrl.employeeForm.begin.$error.max">Maximim time working day of beginning information is 24.</span>
+        <span ng-show="$ctrl.employeeForm.begin.$error.min">Minimun time working day of beginning information is 0.</span>
+    </span>
+    <input ng-model="$ctrl.employee.timeOfEnding" type="number" ng-required="true" min="0" max="24" name="end" />
+    <span ng-show="$ctrl.employeeForm.$submitted">
+        <span ng-show="$ctrl.employeeForm.end.$error.required">Time of ending working day is required.</span>
+        <span ng-show="$ctrl.employeeForm.end.$error.max">Maximim time of ending working day information is 24.</span>
+        <span ng-show="$ctrl.employeeForm.end.$error.min">Minimun time of ending working day information is 0.</span>
+    </span>
+    <select ng-options="gender for gender in $ctrl.genders" ng-model="$ctrl.employee.gender" ng-required="true" name="gender"></select>
+    <span ng-show="$ctrl.employeeForm.$submitted && $ctrl.employeeForm.end.$error.required">Gender is required.</span>
+    <button ng-disabled="$ctrl.progress">Submit</button>
+    <button type="button" ng-click="$ctrl.close()">Close</button>
+</form>

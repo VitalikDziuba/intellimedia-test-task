@@ -1,0 +1,33 @@
+﻿<button ng-click="$ctrl.addEmployee()">Add new</button>
+
+<ul uib-pagination direction-links="false" boundary-links="true" total-items="$ctrl.employeesService.count"
+    ng-model="$ctrl.currentPage" ng-change="$ctrl.changePage()"></ul>
+<table>
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+            <td>Gender</td>
+            <td>Contact information</td>
+            <td>Date of Adding</td>
+            <td>Time of beginning working day</td>
+            <td>Time of ending working day</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="employee in $ctrl.employees">
+            <td>{{employee.id}}</td>
+            <td>{{employee.name}}</td>
+            <td>{{employee.gender}}</td>
+            <td>{{employee.contactInformation}}</td>
+            <td>{{employee.dateOfAdding | date:'yyyy-MM-dd'}}</td>
+            <td>{{employee.timeOfBeginning}}</td>
+            <td>{{employee.timeOfEnding}}</td>
+            <td><button ng-click="$ctrl.editEmployee(employee, $index)">Edit</button></td>
+            <td><button ng-disabled="$ctrl.progressRemove" ng-click="$ctrl.removeEmployee(employee, $index)">Remove</button></td>
+        </tr>
+    </tbody>
+</table>
+<button ui-sref="chart">Look at charts</button>

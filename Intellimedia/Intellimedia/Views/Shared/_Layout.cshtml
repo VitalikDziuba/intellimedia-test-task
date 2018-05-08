@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html ng-app="intellimedia">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intellimedia</title>
+    @Styles.Render("~/Content/css")
+
+</head>
+<body>
+    <ui-view></ui-view>
+
+    @Scripts.Render("~/bundles/angular-components")
+    @Scripts.Render("~/bundles/angular")
+    @RenderSection("scripts", required: false)
+    @RenderBody()
+</body>
+</html>

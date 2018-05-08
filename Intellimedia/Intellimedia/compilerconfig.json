@@ -1,0 +1,22 @@
+﻿[
+  {
+    "outputFile": "Content/Sass/preloader.css",
+    "inputFile": "Content/Sass/preloader.scss"
+  },
+  {
+    "outputFile": "Content/Sass/fonts.css",
+    "inputFile": "Content/Sass/fonts.scss"
+  },
+  {
+    "outputFile": "Content/Sass/media-style.css",
+    "inputFile": "Content/Sass/media-style.scss"
+  },
+  {
+    "outputFile": "Content/Sass/standart-style.css",
+    "inputFile": "Content/Sass/standart-style.scss"
+  },
+  {
+    "outputFile": "Content/Sass/style.css",
+    "inputFile": "Content/Sass/style.scss"
+  }
+]
